@@ -61,3 +61,6 @@ Few [extension methods](/app/src/main/java/com/pcsalt/example/airqualityindex/ex
 #### Modification Required
   1. Graph presentation needs to be improved
   2. UI is basic and presentation can be improved
+
+### Download APK
+APK of the current state can be downloaded from [here](/app-debug.apk)
