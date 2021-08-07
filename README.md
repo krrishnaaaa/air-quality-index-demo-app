@@ -3,8 +3,8 @@
 A single activity application to display live Air Quality Monitoring data.
 
 ### Libraries Used
-  1. (Socket.io)[https://github.com/socketio/socket.io]
-  2. (GreenRobot EventBus)[https://github.com/greenrobot/EventBus]
+  1. [Socket.io](https://github.com/socketio/socket.io)
+  2. [GreenRobot EventBus](https://github.com/greenrobot/EventBus)
   3. [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
   4. Android Room DB
   5. Other Android support and kotlin coroutine libraries
@@ -15,13 +15,13 @@ This demo application uses MVVM architecture to get live data from web-socket se
 The socket connection is opened as soon as application opens using [SocketManager](/app/src/main/java/com/pcsalt/example/airqualityindex/network/SocketManager.kt). The data received from socket is passed using EventBus to the repository. In repository the received data is stored, which is provided to the UI using LiveData.
 
 #### Class Description
-  1. SocketManager: To maintain socket connection
-  2. SocketListener: To listen to the socket data and emit received data using EventBus
-  3. AQIRepo: Repository to receive network data and to query/serve room db data
-  4. AQIDataViewModel: ViewModel to provide data navigation
-  5. NumberExt: Extension methods
-  6. DisplayAQIDataFragment: To display the list of cities with AQI data
-  7. AQIDetailsFragment: To display the chart with the data available in the db
+  1. *SocketManager*: To maintain socket connection
+  2. *SocketListener*: To listen to the socket data and emit received data using EventBus
+  3. *AQIRepo*: Repository to receive network data and to query/serve room db data
+  4. *AQIDataViewModel*: ViewModel to provide data navigation
+  5. *NumberExt*: Extension methods
+  6. *DisplayAQIDataFragment*: To display the list of cities with AQI data
+  7. *AQIDetailsFragment*: To display the chart with the data available in the db
 
 
 *DisplayAQIDataFragment* fragment listens for the database changes and displays all available cities air quality monitoring data in a list.
