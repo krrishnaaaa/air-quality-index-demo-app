@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pcsalt.example.airqualityindex.R
 import com.pcsalt.example.airqualityindex.databinding.FragmentDisplayAqiDataBinding
+import com.pcsalt.example.airqualityindex.db.entity.AQIData
 import com.pcsalt.example.airqualityindex.display.AQIDataViewModel
+import com.pcsalt.example.airqualityindex.display.details.AQIDetailsFragment
 import com.pcsalt.example.airqualityindex.ext.isMoreThan30Sec
 
 class DisplayAQIDataFragment : Fragment() {
@@ -30,6 +33,22 @@ class DisplayAQIDataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(AQIDataViewModel::class.java)
         aqiAdapter = AQIDataAdapter()
+        aqiAdapter?.listener = object : AQIDataAdapter.OnItemClickListener {
+            override fun onClick(item: AQIData) {
+                activity?.let {
+                    val aqiDetailsFragment = AQIDetailsFragment()
+                    val bundle = Bundle()
+                    bundle.putString(AQIDetailsFragment.EXTRA_CITY_NAME, item.cityName)
+                    aqiDetailsFragment.arguments = bundle
+
+                    it.supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.container, aqiDetailsFragment)
+                        .addToBackStack(AQIDetailsFragment::class.java.simpleName)
+                        .commit()
+                }
+            }
+        }
         binding.rvData.apply {
             layoutManager = LinearLayoutManager(context)
 

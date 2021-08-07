@@ -17,6 +17,7 @@ class AQIRepo(private val aqiDao: AQIDao) {
     suspend fun insertAll(data: List<AQIData>) = aqiDao.insertAll(data)
 
     fun getLatestData() = aqiDao.getLatestData()
+    fun getLatestDataByCity(cityName: String) = aqiDao.getLatestDataByCity(cityName)
 
     fun registerForEvents() {
         Logger.d("registering for events")

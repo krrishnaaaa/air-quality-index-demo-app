@@ -23,6 +23,8 @@ class AQIDataViewModel(application: Application) : AndroidViewModel(application)
 
     fun getLatestData() = aqiRepo.getLatestData()
 
+    fun getLatestDataByCity(cityName: String) = aqiRepo.getLatestDataByCity(cityName)
+
     override fun onCleared() {
         aqiRepo.unregisterForEvents()
         super.onCleared()

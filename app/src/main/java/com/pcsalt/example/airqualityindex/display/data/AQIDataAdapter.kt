@@ -19,6 +19,7 @@ import com.pcsalt.example.airqualityindex.util.Logger
 class AQIDataAdapter : RecyclerView.Adapter<AQIDataAdapter.DataVH>() {
 
     private val dataList: ArrayList<AQIData> = ArrayList()
+    var listener: OnItemClickListener? = null
 
     fun clear() {
         dataList.clear()
@@ -76,6 +77,9 @@ class AQIDataAdapter : RecyclerView.Adapter<AQIDataAdapter.DataVH>() {
 
     inner class DataVH(var binding: ItemAqiDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun initData(data: AQIData) {
+            binding.root.setOnClickListener {
+                listener?.onClick(data)
+            }
             binding.tvCityName.text = data.cityName
             binding.apply {
                 tvCityName.text = data.cityName
@@ -124,6 +128,10 @@ class AQIDataAdapter : RecyclerView.Adapter<AQIDataAdapter.DataVH>() {
             val newBand = newAQI.getAQIBand()
             return newBand - oldBand
         }
+    }
+
+    interface OnItemClickListener {
+        fun onClick(item: AQIData)
     }
 }
 
